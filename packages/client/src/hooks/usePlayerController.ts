@@ -1,4 +1,4 @@
-import { stepPlayer, type Vec2 } from "@casino/shared";
+import { resolveCollisions, stepPlayer, type Vec2 } from "@casino/shared";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import type { Group } from "three";
@@ -18,7 +18,9 @@ export function usePlayerController() {
     const object = playerRef.current;
     if (!object) return;
 
-    position.current = stepPlayer(position.current, input.current, dt);
+    position.current = resolveCollisions(
+      stepPlayer(position.current, input.current, dt),
+    );
     object.position.x = position.current.x;
     object.position.z = position.current.z;
   });

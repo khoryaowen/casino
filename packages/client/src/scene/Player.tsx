@@ -1,7 +1,6 @@
+import { PLAYER_SIZE } from "@casino/shared";
 import type { Ref } from "react";
 import type { Group } from "three";
-
-const PLAYER_SIZE = 1;
 
 type PlayerProps = {
   ref?: Ref<Group>;

@@ -13,6 +13,9 @@ export type MovementInput = {
 /** Player speed in world units per second. */
 export const PLAYER_SPEED = 6;
 
+/** Player footprint: a square of this side length, in world units. */
+export const PLAYER_SIZE = 1;
+
 /** Largest time step we will simulate in one call, in seconds (guards against tab-switch spikes). */
 const MAX_DT = 0.1;
 
