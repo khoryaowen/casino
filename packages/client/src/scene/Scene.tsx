@@ -3,6 +3,7 @@ import { Floor } from "./Floor";
 import { FollowCamera } from "./FollowCamera";
 import { Lighting } from "./Lighting";
 import { Player } from "./Player";
+import { Tables } from "./Tables";
 
 export function Scene() {
   const playerRef = usePlayerController();
@@ -11,6 +12,7 @@ export function Scene() {
     <>
       <Lighting />
       <Floor />
+      <Tables />
       <Player ref={playerRef} />
       <FollowCamera target={playerRef} />
     </>
