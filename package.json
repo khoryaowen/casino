@@ -15,7 +15,8 @@
     "db:reset": "docker compose down -v && docker compose up -d postgres",
     "dev": "pnpm -r --parallel dev",
     "dev:client": "pnpm --filter @casino/client dev",
-    "dev:server": "pnpm --filter @casino/server dev"
+    "dev:server": "pnpm --filter @casino/server dev",
+    "test": "pnpm -r --if-present test"
   },
   "engines": {
     "node": ">=22"
