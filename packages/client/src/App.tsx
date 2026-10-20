@@ -1,35 +1,23 @@
 import { CASINO_STARTING_CHIPS } from "@casino/shared";
-import { OrbitControls } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { useRef } from "react";
-import type { Mesh } from "three";
-
-function SpinningCube() {
-  const meshRef = useRef<Mesh>(null);
-
-  useFrame((_state, delta) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.x += delta * 0.8;
-    meshRef.current.rotation.y += delta * 1.2;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="#e63946" />
-    </mesh>
-  );
-}
+import type { Group } from "three";
+import { FollowCamera } from "./scene/FollowCamera";
+import { Floor } from "./scene/Floor";
+import { Lighting } from "./scene/Lighting";
+import { Player } from "./scene/Player";
 
 export function App() {
+  const playerRef = useRef<Group>(null);
+
   return (
     <>
-      <div className="hud">Starting chips: {CASINO_STARTING_CHIPS}</div>
-      <Canvas camera={{ position: [3, 3, 3], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[3, 4, 5]} intensity={1.5} />
-        <SpinningCube />
-        <OrbitControls />
+      <div className="hud">Chips: {CASINO_STARTING_CHIPS}</div>
+      <Canvas shadows camera={{ position: [0, 12, 10], fov: 50 }}>
+        <Lighting />
+        <Floor />
+        <Player ref={playerRef} />
+        <FollowCamera target={playerRef} />
       </Canvas>
     </>
   );
